@@ -1,0 +1,58 @@
+﻿@page "/properties/edit/{id:int}"
+@model CityBreaks.Web.Pages.Properties.EditModel
+@{
+    ViewData["Title"] = "Editar Propriedade";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.Property != null)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <form method="post">
+                <input type="hidden" asp-for="Property.Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Property.Name" class="control-label">Nome da Propriedade</label>
+                    <input asp-for="Property.Name" class="form-control" />
+                    <span asp-validation-for="Property.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Property.PricePerNight" class="control-label">Preço por Noite (R$)</label>
+                    <input asp-for="Property.PricePerNight" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Property.PricePerNight" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <p><strong>Cidade:</strong> @Model.Property.City.Name - @Model.Property.City.Country.CountryName</p>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Salvar Alterações" class="btn btn-primary" />
+                    <a asp-page="/Cities/Details" asp-route-name="@Model.Property.City.Name" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" asp-page-handler="Delete" class="btn btn-danger"
+                            onclick="return confirm('Tem certeza que deseja excluir esta propriedade?')">
+                        Excluir
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h4>Propriedade não encontrada</h4>
+        <a asp-page="/Index" class="btn btn-primary">Voltar ao Início</a>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

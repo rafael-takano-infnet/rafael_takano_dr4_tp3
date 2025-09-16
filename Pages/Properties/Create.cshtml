@@ -1,0 +1,44 @@
+﻿@page "/properties/create"
+@model CityBreaks.Web.Pages.Properties.CreateModel
+@{
+	ViewData["Title"] = "Adicionar Nova Propriedade";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+	<div class="col-md-8">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+			<div class="form-group mb-3">
+				<label asp-for="Property.Name" class="control-label">Nome da Propriedade</label>
+				<input asp-for="Property.Name" class="form-control" />
+				<span asp-validation-for="Property.Name" class="text-danger"></span>
+			</div>
+            
+			<div class="form-group mb-3">
+				<label asp-for="Property.PricePerNight" class="control-label">Preço por Noite (R$)</label>
+				<input asp-for="Property.PricePerNight" class="form-control" type="number" step="0.01" />
+				<span asp-validation-for="Property.PricePerNight" class="text-danger"></span>
+			</div>
+            
+			<div class="form-group mb-3">
+				<label asp-for="Property.CityId" class="control-label">Cidade</label>
+				<select asp-for="Property.CityId" asp-items="Model.CityList" class="form-select">
+					<option value="">Selecione uma cidade</option>
+				</select>
+				<span asp-validation-for="Property.CityId" class="text-danger"></span>
+			</div>
+            
+			<div class="form-group">
+				<input type="submit" value="Salvar" class="btn btn-primary" />
+				<a asp-page="/Index" class="btn btn-secondary">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

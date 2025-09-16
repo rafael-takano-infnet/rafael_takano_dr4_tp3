@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CityBreaks.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CityBreaks.Web.styles.css" asp-append-version="true" />
+
+    <!-- Fonte Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Aplicar Poppins globalmente */
+        body, h1, h2, h3, h4, h5, h6, .btn, .card, .form-control, .navbar-brand {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        /* Corpo do texto em preto normal */
+        body {
+            color: #212529 !important;
+            font-weight: 400 !important;
+        }
+
+        /* Textos normais em preto */
+        p, .card-text, .text-muted, small {
+            color: #212529 !important;
+            font-weight: 400 !important;
+        }
+
+        /* Títulos em negrito rosa claro */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700 !important;
+            color: #89cff0 !important;
+        }
+
+        /* Navbar brand rosa claro */
+        .navbar-brand {
+            font-weight: 700 !important;
+            color: #89cff0 !important;
+        }
+
+        /* Links de navegação em preto */
+        .navbar-nav .nav-link {
+            color: #212529 !important;
+            font-weight: 500 !important;
+        }
+
+        /* Botões rosa claro com texto BRANCO */
+        .btn-primary {
+            background-color: #89cff0 !important;
+            border-color: #89cff0 !important;
+            color: white !important;
+            font-weight: 500 !important;
+        }
+
+        .btn-success {
+            background-color: #89cff0 !important;
+            border-color: #89cff0 !important;
+            color: white !important;
+            font-weight: 500 !important;
+        }
+
+        .btn-outline-primary {
+            border-color: #89cff0 !important;
+            color: #89cff0 !important;
+            background-color: transparent !important;
+            font-weight: 500 !important;
+        }
+
+        .btn-outline-info {
+            border-color: #89cff0 !important;
+            color: #89cff0 !important;
+            background-color: transparent !important;
+            font-weight: 500 !important;
+        }
+
+        /* Botões secundários em preto (sem cinza) */
+        .btn-secondary {
+            background-color: #212529 !important;
+            border-color: #212529 !important;
+            color: white !important;
+            font-weight: 500 !important;
+        }
+
+        /* Botão danger para excluir */
+        .btn-danger {
+            background-color: #dc3545 !important;
+            border-color: #dc3545 !important;
+            color: white !important;
+            font-weight: 500 !important;
+        }
+
+        /* Títulos de cards rosa claro */
+        .card-title {
+            color: #89cff0 !important;
+            font-weight: 600 !important;
+        }
+
+        /* Corpo do card em preto normal */
+        .card-body p {
+            color: #212529 !important;
+        }
+
+        /* Badge rosa claro */
+        .badge.bg-success {
+            background-color: #89cff0 !important;
+            color: white !important;
+            font-weight: 500 !important;
+        }
+
+        /* Links normais em preto */
+        a:not(.btn):not(.navbar-brand):not(.nav-link) {
+            color: #212529 !important;
+            text-decoration: underline !important;
+        }
+
+        /* Focus nos inputs rosa claro */
+        .form-control:focus, .form-select:focus {
+            border-color: #89cff0 !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.25) !important;
+        }
+
+        /* Labels em preto */
+        .form-label, label {
+            color: #212529 !important;
+            font-weight: 500 !important;
+        }
+
+        .alert-info {
+            color: #212529 !important;
+        }
+
+        .alert-warning {
+            background-color: #fff3e0 !important;
+            border-color: #ffcc80 !important;
+            color: #212529 !important;
+        }
+
+        /* Remover qualquer cor cinza */
+        .text-muted {
+            color: #212529 !important;
+        }
+
+        /* Footer em preto */
+        footer {
+            background-color: #f8f9fa !important;
+            color: #212529 !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">CityBreaks</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Index">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Properties/Filter">Buscar Propriedades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer">
+        <div class="container text-center">
+            &copy; 2024 - CityBreaks.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

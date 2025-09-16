@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "CityBreaks - Portal de Propriedades Turísticas";
+}
+
+<div class="text-center">
+	<h1 class="display-4">CityBreaks</h1>
+	<p>Descubra propriedades incríveis para suas próximas férias</p>
+</div>
+
+<div class="row">
+	@foreach (var city in Model.Cities)
+	{
+		<div class="col-md-4 mb-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">@city.Name</h5>
+					<p class="card-text">@city.Country.CountryName</p>
+					<p class="card-text">
+						<small class="text-muted">@city.Properties.Count propriedades disponíveis</small>
+					</p>
+					<a asp-page="/Cities/Details" asp-route-name="@city.Name" class="btn btn-primary">Ver Detalhes</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>
